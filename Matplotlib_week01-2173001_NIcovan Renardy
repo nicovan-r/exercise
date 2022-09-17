@@ -1,0 +1,24 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Dalam bahasa pemograman Python terdapat suatu method bernama Matplotlib yang memiliki fungsi untuk memvisualisasikan data yang diinput menjadi bentuk graphs.
+Pada Graphs di method Matplotlib digambarkan sebagai suatu figure yang di dalamnya terdiri dari satu atau lebih jumlah axes disertai dengan dua atau lebih axis.
+
+Definisi Figure, Axes, dan Axis:
+- Figure adalah sebuah kontainer atau tempat untuk visualisasi data dengan methode Matplotlib yang terdiri dari axes-axes.
+- Axes adalah area gambar dalam suatu figure.
+- Axis adalah posisi sumbu figure, pada visualisasi data yang bentuknya 2 Dimensi maka terdapat sumbu X dan Y. Sedangkan untuk visualisasi data yang berbentuk 3D maka sumbunya terdapat X, Y, dan Z.
+
+Untuk menggunakan method Matplotlib ini pertama-tama perlu menjalankan Magic Command yaitu "%matplotlib inline" jika hendak menggunakan method ini pada Jupiter Notebook  versi lawas, untuk vrsi yang lebih baru tidak perlu menjalankan Magic Command ini terlebihi dahulu. Setelah itu mengimport matplotlib.pyplot as plt dan import numpy as np.
+- Membuat figure tanpa axes: fig = plt.figure()
+- Membuat figure dengan sebuah axes: fig, ax = plt.subplots()
+- Membuat figure dengan lebih dari satu axes: fig, axs = plt.subplots(Jumlah x, Jumlah y)
+- Membentuk visualisasi data: plt.plot(x, y)
+
+2 Gaya menggunakan method Matplotlib:
+Object Oriented Style dan Pyplot Style
+
+Sebelum menggunakan kedua gaya tersebut, buat deret bilangan terlebih dahulu. Misalnya menggunakan fungsi linspace(Titik bilangan awal, Titik bilangan akhir, jumlah data point) yang berfungsi membuat deret bilangan dengan batas tertentu dan interval yang sama.
+
+- Object Oriented Style: buat figure dan axis, lalu masukan variant data dengan ax.plot() bisa juga ditambahkan label data. Kemudian penamaan sumbu x dan y dengan fungsi set_ylabel() dan set_xlabel(), set_title() untuk judul pada axes, dan legend() untuk menampilkan legenda.
+- Pyplot Style: tidak perlu buat figure dan axis, masukan variant datadengan plt.plot(). Kemudian penamaan sumbu x: plt.xlabel dan sumbu y: plt.ylabel, judul: plt.title(), dan legenda: plt.legend().
