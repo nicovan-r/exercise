@@ -11,6 +11,7 @@ Definisi Figure, Axes, dan Axis:
 - Axis adalah posisi sumbu figure, pada visualisasi data yang bentuknya 2 Dimensi maka terdapat sumbu X dan Y. Sedangkan untuk visualisasi data yang berbentuk 3D maka sumbunya terdapat X, Y, dan Z.
 
 Untuk menggunakan method Matplotlib ini pertama-tama perlu menjalankan Magic Command yaitu "%matplotlib inline" jika hendak menggunakan method ini pada Jupiter Notebook  versi lawas, untuk vrsi yang lebih baru tidak perlu menjalankan Magic Command ini terlebihi dahulu. Setelah itu mengimport matplotlib.pyplot as plt dan import numpy as np.
+Atribut fig untuk figure, ax untuk axes, axs untuk axes yang lebih dari satu
 - Membuat figure tanpa axes: fig = plt.figure()
 - Membuat figure dengan sebuah axes: fig, ax = plt.subplots()
 - Membuat figure dengan lebih dari satu axes: fig, axs = plt.subplots(Jumlah x, Jumlah y)
