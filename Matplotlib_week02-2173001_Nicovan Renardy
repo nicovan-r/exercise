@@ -1,0 +1,28 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Pada topik matplotlib week ke dua ini membahas tentang pyplot.
+Fungsi Pyplot berguna untuk melakukan plotting suatu data dengan beberapa fungsi modifikasi ke dalam figure seperti menentukan bentuk dan warna plotting figure, menentukan batas awal dan akhir bilangan pada sumbu X dan Y, memberi label plot, dst. Hasil dari pyplot menyerupai matlab, tetapi kekurangan dari matlab yaitu biaya lisensi yang kurang terjangkau.
+
+Cara membuat plotting:
+1. import matplotlib
+   import matplotlib.pyplot as plt
+   import numpy as np
+2. Membuat plot: plt.plot([deret bilangan X], [deret bilangan Y], warna dan bentuk) <-- jika hanya mencantumkan satu deret bilangan maka deret yang ada dianggap sebagai sumbu Y dan deret bilangan sumbu X akan terbuat secara otomatis dengan interval yang konsistan. Parameter ketiga menentukan warna dan bentuk plot, misalnya 'ro' berarti setelan warna plot warna merah (red) dan berbentuk bulat (o), jika setelan bentuk dan warna dikosongkan maka akan berbentuk garis biru muda.
+                 plt.ylabel('sumbu y')
+                 plt.axis([nilai minimum x, nilai minimum x, nilai maksimum y, nilai maksimum y]) <-- nilai-nilai untuk sumbu X dan Y.
+                 plt.show() <-- fungsi ini untuk menyembunyikan hasil eksekusi dari plt.ylabel('sumbu y')
+    
+3. Membuat plot lebih dari satu dengan memanggil pyplot sekali(multi plot): plt.plot([deret bilangan X], [deret bilangan Y], 'warna dan bentuk'], 
+                                                                            [deret bilangan X], [deret bilangan Y], 'warna dan bentuk'], 
+                                                                            [deret bilangan X], [deret bilangan Y], 'warna dan bentuk'])
+                                                                            
+Untuk membuat deretan bilangan secara acak dengan pyplot ada 3 metode:
+- np.arange(plotting point minimum, plotting point maksimum, interval konsisten) '.' adalah ploting point.
+- np.random.randint(plotting point minimum, plotting point maksimum, size))
+- np.random.randn(dimensi) <--Menghasilkan bilangan float dari standard normal distribution
+
+Tipe plotting:
+- tipe scatter: plt.scatter('deret bilangan', 'derert bilangan', data=data)
+- tipe garis: plt.plot(sumbu x, sumbu y)
+- tipe batang: plt.bar(sumbu x, sumbu y)
