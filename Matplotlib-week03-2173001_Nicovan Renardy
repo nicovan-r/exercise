@@ -17,3 +17,7 @@ Week 03 matplotlib diajarkan tentang multiple subplots dan histogram.
                        plt.ylabel('Nilai $cos(x_1)$')
 
 2. Histogram
+  -Buat data yang terdiri dari nilai mean (mu) dan standar deviasi (sigma), buat normal distribution untuk mengetahui sebaran data: x = mu + sigma * np.random.randn(10000)
+  -Membuat histogram dengan pyplot style: plt.hist(x, bins=jumlah pengelompokan data, facecolor = warna, alpha=angka untuk transparasi grafik berbentuk desimal tidak lebih dari 1 (0.). Nama label x, y, dan judul plot. Juga bisa memasukan teks ke dalam plot dengan: plt.text(koordinat x, koordinat y, 'string')
+  -Membuat histogram dengan pyplot style: fig, ax = plt.subplots()
+                                          ax.hist(x, bins=jumlah pengelompokan data, facecolor = warna, alpha=angka untuk transparasi grafik berbentuk desimal tidak lebih dari 1 (0.). Nama label x, y, dan judul plot. Juga bisa memasukan teks ke dalam plot dengan: plt.text(koordinat x, koordinat y, 'string')
