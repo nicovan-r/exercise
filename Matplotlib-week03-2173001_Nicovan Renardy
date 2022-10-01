@@ -1,0 +1,19 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Week 03 matplotlib diajarkan tentang multiple subplots dan histogram.
+
+1. Multiple subplots
+  -Membuat simple line plot: np.arrange(starting point yang inklusif/disertakan, end point yang eksklusif/tidak disertakan, interval)
+   Tampung nilai operasi sinus dari dataset pada variabel x/nilai radian, fungsi ini berdasarkan rumus trigonimetri: s = np.sin(2 * np.pi * x)
+   Plot dengan Object Oriented Plotting dan Pyplot plotting. Perbedaan antara keduanya adalah OO plotting perlu membuat ax dan figure dari plt.subplots() sedangkan pyplot tidak perlu buat ax dan figure, menggunakan plt.
+  -Membuat multiple subplots: X1 dan X2 menggunakan fungsi linspace sementara Y1 dan Y2 menggunakan cosinus: np.cos(2 * np.pi * x1)
+   Dengan OO style, gunakan dua kali untuk ax1 dan ax2: ax1.plot(x1, y1, 'warna dan bentuk plot')
+                                           ax1.set_ylabel('Nilai $cos(x_1)$') <-- simbol dollar untuk membuat latex number atau subscript x_1
+                    dan satu kali: fig, (ax1, ax2) = plt.subplots(jumlah baris, jumlah kolom)
+   Dengan pyplot style, plt. subplot(jml baris, jml kolom, mengendalikan axes apa)
+                       dan plt.plot(x1, y1, 'Warna dan bentuk plot')
+                       plt.title('Multiple Subplots')
+                       plt.ylabel('Nilai $cos(x_1)$')
+
+2. Histogram
