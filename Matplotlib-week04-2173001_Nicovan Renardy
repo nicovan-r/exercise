@@ -1,0 +1,86 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+Matplotlib week04
+
+Matplotlib week04 meliputi: membuat bar plot, membuat pie plot, dan membuat table plot
+plt sebagai pyplot
+np sebagai numpy
+
+1. Membuat bar plot
+   Siapkan dua data set bertipe list terdiri dari data dan kategori.
+  - Membentuk bar plot vertikal, plt.bar berisi setidaknya dua parameter: 
+    plt.bar(kategori, data)
+    plt.grid() untuk menampilkan grid
+    plt.xlabel('label untuk sumbu x')
+    plt.ylabel('label untuk sumbu y')
+    plt.title('judul plot)
+   - Membentuk bar plot horizontal, plt.bar berisi setidaknya dua parameter: 
+    plt.barh(kategori, data)
+    atau plt.barh(kategori[::-1], data[::-1]) <--mengembalikan urutan sumbu x dan y
+  - Bar plot tumpuk atau Stacked bar plot:
+    - Siapkan tiga data set bertipe list terdiri dari data1, data2, dan kategori.
+    - plt.bar(kategori, data1, label='Data 1')<--label untuk penamaan data yang muncul di legend
+      plt.bar(kategori, data2, label='Data 2', bottom=data1)<--bottom=data1 menandakan penempatan data1 di bawah, kalau tidak ditentukan penempatannya maka barnya akan saling timpa tak tertumpuk
+  - Pengelompokan dua atau lebih data pada dataset yang berbeda dengan kategori yang sama dan akan diplotting berdampingan satu dengan yang lainnya atau Grouped bar plot:
+    - Siapkan tiga data set bertipe list terdiri dari data1, data2, dan kategori.
+    - Masukan len(kategori) menghasilkan panjang variable kategori
+    - Tentukan lebar bar dengan width + 0.0 sampai 1.0
+    - plt.bar(x-width/2, data1, width, label='Data 1')<--parameter pertama berasosiasi dengan index dari kategori untuk menjadi acuan
+      plt.bar(x+width/2, data2, width, label='Data 2')
+      plt.xticks(x, kategori)<--untuk menerapkan nama" sumbu x, disini berdasarkan kategori
+  - Menambahkan grid dan warna yang dapat disesuaikan:
+    plt.bar(kategori, 
+        data, 
+        color='red', <--mengatur warna dan alpha tranparansi bar
+        alpha=0.25)<--mengatur transparansi bar
+
+    plt.grid(linestyle='--', <--bentuk garis grid
+         linewidth=2, <--ketebalan garis grid
+         axis='y', <--tersedia pilihan: x, y, both untuk direction grid vertikal atau horizontal
+         alpha=0.50)<--mengatur transparansi grid
+2. Membuat pie plot
+  - Siapkan dua data set bertipe list terdiri dari data dan kategori.
+  - Membuat pie plot sederhana:
+    plt.pie(data, <--plt.pie memerlukan sekumpulan data bernilai integer
+        labels=kategori,<--labels=kategori bersifat optional
+        autopct='%1.1f%%',<--menampilkan presentase di setiap area
+        startangle=90)<--melakukan rotasi paada pyplot sesuai perputaran searah jarum jam saat nilainya bertambah besar
+  - Mengatur legend dan color:
+    - Tambahkan satu data set warna bertipe list penempatan warna sesuai dengan data set lainnya.
+    - plt.pie(data, <--plt.pie memerlukan sekumpulan data bernilai integer
+        labels=kategori,<--labels=kategori bersifat optional
+        colors=warna, <--pengaturan warna-warna dari list warna
+        autopct='%1.1f%%',<--menampilkan presentase di setiap area
+        startangle=90)<--melakukan rotasi paada pyplot sesuai perputaran searah jarum jam saat nilainya bertambah besar
+  - Membentuk Exploded pie plot:
+    - Tambahkan satu data set explode_var bertipe list penempatan jarak ditarik keluar sesuai dengan data set lainnya.
+      plt.pie(data, <--plt.pie memerlukan sekumpulan data bernilai integer
+        labels=kategori,<--labels=kategori bersifat optional
+        colors=warna, <--pengaturan warna-warna dari list warna
+        explode=explode_var, <--nilai-nilai explode
+        autopct='%1.1f%%',<--menampilkan presentase di setiap area
+        startangle=90)<--melakukan rotasi paada pyplot sesuai perputaran searah jarum jam saat nilainya bertambah besar
+3. Membuat table plot
+  Table plot membentuk data dalam bentuk tabular tidak dalam format data frame, tetapi termasuk format figure dan axes.
+  - Siapkan data set bertipe list
+  - Table plot dengan OO Style, OO style membutuhkan deklarasi figure dan axes:
+    Masukan fig, ax = plt.subplots()
+    table = plt.table(cellText=data_uas, 
+                  loc='center')<--penempatan table plot
+
+    table.set_fontsize(14)<--ukuran txt, ini merupakan atribut dari object table, jadi haru di tampung ke suatu atribut. Di sini ditampung ke atribut table
+    table.scale(1, 4) <--ukuran kolom, baris
+
+    ax.axis(False)<--untuk menyembunyikan/men-disable axes dari plotting yang dikakukan. Axes terdiri dari sumbu x dan y
+
+    plt.show()
+  - Table plot dengan pyplot style, dengan menggunaman pyplot style, figure dan axes tidak dideklarasikan secara eksplisit padahal diperlukan untuk mendisable axes, perlu memanggil objek akses:
+    table = plt.table(cellText=data_uas, 
+                  loc='center')<--penempatan table plot
+
+    table.set_fontsize(14)<--ukuran txt, ini merupakan atribut dari object table, jadi haru di tampung ke suatu atribut. Di sini ditampung ke atribut table
+    table.scale(1, 4)<--ukuran kolom, baris
+    ax = plt.gca()<--plt.gca untuk mendapatkan axes yang saat ini sedang aktif. gca singkatan dari get current axes mendapatkan referensi objek-objek yang sedang aktif di masukan ke variable ax.
+    ax.axis(False)<--untuk menyembunyikan/men-disable axes dari plotting yang dikakukan. Axes terdiri dari sumbu x dan y
+
+    plt.show()
