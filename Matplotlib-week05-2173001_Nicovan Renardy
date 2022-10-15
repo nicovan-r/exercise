@@ -1,0 +1,35 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Matplotlib week 05 mempelajari Scatter Plot dan Matplotlib Style
+
+1. Scatter Plot
+- Siapkan dua buah variabel dataset dalam tipe data List yang saling berkorelasi.
+- Buat plot berbentuk scatter: plt.scatter(variabel1, variabel2, label='(label )', color='(warna)')
+  bisa membuat multiple scatter dengan memasukan fungsi plt.scatter berturut-turut
+  komponen-komponen di dalam satter plot dapat disesuaikan:
+  plt.scatter(variabel1, variabel2, <--parameter sumber data yang saling berkorelasi
+            color='(cyan)',  <--color: warna
+            linewidths=2,  <--linewidths: ketebalan garis tepi 
+            marker='s',  <--marker: bentuk plotting 's' artinya square
+            edgecolor='black',  <--edgecolors: warna garis tepi
+            s=400) <--s: size ukuran marker
+- Membuat Scatter plot untuk data multi dimensi:
+from sklearn.datasets import load_iris <--mengimport dataset dari modul sklearn untuk kebutuhan machine learning
+iris = load_iris() <--memuat dataset iris yang bertipe data dictionary: dataset klasik yang digunakan ketika seseorang mempelajari machine learning
+features = iris['data'].T <--mengelompokan data per features, untuk melakukan proses transpose (membalik jumlah kolom dan jumlah baris) dengan iris['data'].T
+
+Melihat keys di dataset iris: iris.keys()
+mengakses data dictionary dengan memanggil keynya 'data': iris['data']
+menampilkan fitur ada apa saja tiap indexnya. ukuran dari mahkota bunga atas (petal) dan bawah (sepal) index 0: sepal length (cm), index 1: sepal width (cm), index 2: petal length (cm), index 3; petal width (cm): iris['feature_names']
+plt.scatter(features[0], features[1], <--sepal length dan sepal width
+            alpha=0.2, <--transparansi plotting
+            s=100*features[3], <--ukuran setiap marker. di sini terlalu kecil jadi dikali 100
+            c=iris['target'], <--parameter c dan cmap saling berkait. nilai yang mau kita mapping ke dalam warna ditempatkan ke parameter c
+            cmap='viridis') <--cmap untuk mekanisme mapping/pemetaan terhadap sekumpulan bilangan tertentu dengan warna
+warna yang lebih tua dihasilkan oleh penumpukan, sejumlah ploting di posisi yang sama
+
+2. Matplotlib Style
+- Siapkan plotting
+- Lihat style yang tersedia: plt.style.available
+- Mengubah style plotting: style.use('(nama style)')
