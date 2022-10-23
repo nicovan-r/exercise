@@ -1,0 +1,76 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Pada matplotlib week06 mempelajari membuat Box Plot/Box Chart, Violin Plot/Violin Chart, dan Twin Axes.
+1. Box Plot/Box Chart
+- Siapkan dataset dengan distribusi normal, misalnya: data = np.random.normal(loc=100, scale=10, size=200)<--Parameter loc adalah titik tengah & mean, scale: sebaran data, nilai ini setara dengan standard deviationnya, size: jumlah data point yang ingin dihasilkan.
+- Memanfaatkan pyplot style untuk membuat Bar Plot sederhana. plt.boxplot(data, labels=['Data'])<--plt.boxplot(Parameter data, labels=['']<--opsional untuk penanda sumbu x)
+  garis tengah merepresentasikan median setara dengan kuartal 2, alas box bawah merepresentasikan kuartal 1 dan kuartal 3
+  garis di bawah box dan di atasnya merepresentasikan nilai terendah dan tertinggi dalam dataset yang masih dalam batas 1,5 IQR (Interquartile Range)
+  marker bulat di atas garis menandakan outlier: data yang berada di luar jangkauan 1,5 IQR.
+- Membuat Notched Box Plot: plt.boxplot(data, labels=['Data'], notch=True)<--menambah notch='True' pada parameter boxplot
+- Marker pada boxplot pada outlier nya di matplotlib dikenal juga sebagai flier, bebas ingin memunculkan outlier atau tidak. Cara mengatur marker untuk outlier:
+  plt.boxplot(data, 
+            labels=['Data'],
+            showfliers=True, <--menampilkan outlier
+            flierprops={'markerfacecolor':'r', 'marker':'s'})<--parameter flierdrops membutuhkan dictionary, markerfacecolor: memberi warna marker, marker: bentuk marker
+- membuat Box Plot horizontal:
+plt.boxplot(data, labels=['Data'], vert=False)<--menggunakan parameter vert=False agar Box Plot nya horizontal.
+- Multiple Box Plot:
+data = [data1, data2, data3, data4]<--list kumpulan data distribusi normal yang selanjutnya menjadi parameter pertama di plt.boxplot()
+2. Violin Plot/Violin Chart
+- Siapkan dataset dengan distribusi normal, misalnya: data = np.random.normal(loc=100, scale=10, size=200)<--Parameter loc mengindikasikan nilai mean & median dari distribusi normal, scale nilainya setara dengan standard deviation semakin tinggi nilainya maka semakin luas variasi datanya, size menentukan banyak datapoint yang dihasilkan.
+- Membuat Violin Plot sederhana: plt.violinplot(data) <--garis horizontal di atas merepresentasikan nilai terkecil dan terbesar dati dataset yang dimiliki.
+#hasil distribusi normal, nilai puncaknya 100 menempati posisi yang sama dengan nilai loc dan mean
+- Mengatur violin plot:
+plt.violinplot(data,
+               showextrema=True, <--parameter showextrema menampilkan garis tengah yang mengindikasikan nilai terendah dan tertinggi
+               showmeans=False,<--paramenter showmeans menampikan nilai mean menempati titik yg sama dg median
+               showmedians=False,<--paramenter showmedians menampikan nilai median
+               quantiles=[0.25, 0.5, 0.75])<--menampikan kuartal 1, 2, 3 dalam bentuk persentase
+- Membuat violin plot horizontal: plt.violinplot(data, vert=False)<--Horizontal violin plot dengan vert=false
+- Membuat multiple violin plot: data = [data1, data2, data3, data4]<--data-data dikumpulkan ke dalam sebuah list yang selanjutnya menjadi parameter pertama di plt.violinplot()
+3. Twin Axes
+- Contoh kasus twin axes 1 - memiliki nilai eksponensial dan logaritmik:
+  Siapkan sebuah dataset, contoh: x = np.linspace(1, 10, 25)<--Parameter pertama dan kedua: nilai terkecil dan nilai terbesar, parameter ketiga: jumlah data point dari fungsi linspace.
+Terdapat satu buah sumbu x dengan 2 buah sumbu y
+sumbu y satu nilai eksponensial, sumbu y 2 nilai logaritmik
+Plotting di sini secara OO Style:
+
+fig, ax1 = plt.subplots()
+
+ax1.plot(x, np.exp(x), 'bs-', label='exp')<--paramenter np.exp(x): nilai eksponensial ke sumbu y,'bs-': warna daris blue bentuk square, label='' muncul di legend
+ax1.set_xlabel('Sumbu X')
+ax1.set_ylabel('exp')
+
+ax2 = ax1.twinx()<--plotting dilakukan pada axes yang berbeda, ditempatkan bertumpukan dengan axes pertama, dikenal sebagai twin axes dan dihailkan lah axes baru di atas axes pertama
+ax2.plot(x, np.log(x), 'ro-', label='log')<--parameter np.log(x) atas nilai x ke sumbu y.
+ax2.set_ylabel('log')
+
+fig.suptitle('Contoh Twin Axes')<--tidak bisa memberi judul pada axes karena ada 2 axes, jadi berikan nama pada figure: gunakan suptitle, sup artinya super
+fig.legend(loc='lower left')<--tidak bisa ditampilkan di tingkat axes, bisa di tingkat figure. Parameter loc='' adalah lokasi legend
+
+plt.show()
+
+- Contoh kasus twin axes 2 - Perbandingan Suhu Celcius dan Fahrenheit dari beberapa hari:
+Siapkan sebuah dataset, contoh menggunakan randint() untuk menghasilkan bilangan acak bertipe integer.
+def C2F(celsius=0):
+    return (celsius * 1.8) + 32
+
+def konversi_sumbu(ax1): 
+    y1, y2 = ax1.get_ylim() <--ylim: y limit. y1 menampung nilai sumbu y terkecil dan y2 nilai terkecil dari axes ini
+    ax2.set_ylim(C2F(y1), C2F(y2)) <--mengkonversi menjadi fahrenheit
+    ax2.figure.canvas.draw() <--menggambar figure dari kedua axes
+
+fig, ax1 = plt.subplots() 
+ax2 = ax1.twinx() 
+
+ax1.callbacks.connect('ylim_changed', konversi_sumbu) <--menghubungkan sumbu y ax1 dan  sumbu y ax2
+ax1.plot(x) 
+
+ax1.set_xlabel('Hari')
+ax1.set_ylabel('Celsius') 
+ax2.set_ylabel('Fahrenheit') 
+
+fig.suptitle('Temperatur Udara') 
+plt.show() 
