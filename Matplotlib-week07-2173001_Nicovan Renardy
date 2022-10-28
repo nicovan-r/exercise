@@ -1,0 +1,102 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Matplotlib week 07 membahas tentang 3D Plot, Contour Plot, dan 3D Area Plot.
+1. 3D Plot
+- Jalankan terlebih dahulu magic command %matplotlib notebook untuk memastikan output yang dihasilkan matplotlib bisa ditampilkan pada halaman jupyter notebook, juga bisa berinteraksi dengan 3D plotting.
+- Untuk membuat 3D Axes harus membangun sendiri objek figure dan axesnya:
+  fig = plt.figure()
+  ax = plt.axes(projection='3d')
+
+  plt.show()
+- Buat data plotting yang terdiri dari variabel x, y, z yang berisi array deret bilangan
+- Membuat 3D line plot:
+contoh:
+  fig = plt.figure()
+  ax = plt.axes(projection='3d') <--tipe proyeksi
+
+  ax.plot(x, y, z, color='red') <--parameter ax.plot: (sumbu x, sumbu y, data, color='warna'), parameter color bersifat opsional
+
+  ax.set(title='Contoh 3D Line Plot',
+       xlabel='Sumbu X',
+       ylabel='Sumbu Y',
+       zlabel='Sumbu Z')
+
+  plt.show()
+  - Membuat 3D Scatter Plot:
+  contoh:
+  fig = plt.figure()
+  ax = plt.axes(projection='3d')
+
+  ax.scatter(x, y, z, color='green') <--membuat scatter plot. Paramerter: (sumbu x, sumbu y, data, color='warna'), parameter color bersifat opsional
+
+  ax.set(title='Contoh 3D Scatter Plot',
+       xlabel='Sumbu X',
+       ylabel='Sumbu Y',
+       zlabel='Sumbu Z')
+
+  plt.show()
+  
+2. Contour Plot
+- Siapkan dataset untuk Contour Plot dengan area permukaan (meshgrid):
+contoh:
+n = np.linspace(-3.0, 3.0, 100) <--deret bilangan digenerate dengan np.linspace(nilai terkecil, nilai terbesar, banyak datapoint)
+
+x, y = np.meshgrid(n, n) <--membentuk area permukaan terdiri dari x dan y dengan menggunakan np.meshgrid(n, n), memiliki shape/dimensi n*n dari banyak datapoint yang ditentukan
+z = np.sqrt(x**2 + y**2) #variabel z berisi hasil akar kuadrat dari sumbu x pangkat 2 ditambah sumbu y pangkat 2
+
+print(x.shape) <--sumbu x, y, z berbentuk 2 dimensi
+print(y.shape)
+print(z.shape)
+
+- Membuat Contour Plot:
+contour plot dasarnya merupakan visualisasi data yang bisa digunakan untuk mengvisualisasikan data 3D ke 2D. Contour plot biasanya ada di data geospacial.
+contoh:
+plt.contour(x, y, z) <--data 3D, ditampilkan dalam bentuk 2D
+plt.colorbar() <--memunculkan bar untuk merepresentasikan warna ke dalam bentuk numerik
+
+plt.title('Contour Plot')
+plt.xlabel('Sumbu X')
+plt.ylabel('Sumbu Y')
+
+plt.show()
+- Membuat Filled Contour Plot:
+Memenuhi area plot warna dengan Filled Contour Plot
+contoh:
+plt.contourf(x, y, z) <--data 3D, ditampilkan dalam bentuk 2D
+plt.colorbar() <--memunculkan bar untuk merepresentasikan warna ke dalam bentuk numerik
+
+plt.title('Filled Contour Plot')
+plt.xlabel('Sumbu X')
+plt.ylabel('Sumbu Y')
+
+plt.show()
+
+3. 3D Area Plot
+- Siapkan dataset untuk Contour Plot dengan area permukaan (meshgrid)
+- Membuat 3D Wireframe:
+contoh:
+fig = plt.figure()
+ax = plt.axes(projection='3d') <--Menampilkan plotting yang bersifat 3D
+
+ax.plot_wireframe(x, y, z, color='orange')
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+ax.set_title('3D Wireframe')
+
+plt.show()
+- Membuat 3D Surface Plot:
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+
+ax.plot_surface(x, y, z, color='orange') atau..
+ax.plot_surface(x, y, z, cmap='viridis') <--cmap adalah parameter untuk membuat plot dengan warna seperti pada contour plot
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+ax.set_title('3D Surface Plot')
+
+plt.show()
