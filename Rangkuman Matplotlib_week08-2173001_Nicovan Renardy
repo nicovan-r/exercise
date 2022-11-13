@@ -1,0 +1,31 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Matplotlib week 08 membahas tentang plot lifecycle Matplotlib
+- Membentuk dataset sample, membentuk sample data set yang dibentuk dari suatu data dictionary terdiri dari pasangan key and values
+- tuple(data.keys())<--dalam dictionary bisa mengekstrak keysnya saja dengan data.keys()
+- tuple(data.values())<--dalam dictionary bisa mengekstrak keysnya saja dengan data.values()
+- plt.style.available<--menampilkan daftar style yang disediakan Matplotlib dengan mengakses plt.style.avaiable
+- plt.style.use('bmh')<--menggunakan suatu style yang disediakan Matplotlib dengan plt.style.use('nama_style')
+- ax.get_xticklabels()<--menangkap objek dari tick labels yang ada pada sumbu x dengan memanggil method ax.get.xticklabels() pada variabel labels
+- plt.setp(labels,<--menentukan objek yang mau diatur propertiesnya
+         rotation=45, <--tick label di sumbu x memiliki rotasi 45 derajat berlawanan arah jarum jam
+         horizontalalignment='right')<--penataan menggunakan rata kanan dari posisi tick label
+- Pengaturan format pada ticker : from matplotlib.ticker import FuncFormatter
+- formatter = FuncFormatter(ribuan)<--membentuk objek Function Formatter FuncFormatter(fungsi yang digunakan untuk formatting)
+ax.xaxis.set_major_formatter(formatter)<--Menerapkan formatter pada sumbu x dengan memanggil axis terlebih dahulu
+- set properties Tick Label dengan plt.setp
+plt.setp(labels,<--menentukan objek yang mau diatur propertiesnya
+         rotation=45, <--tick label di sumbu x memiliki rotasi 45 derajat berlawanan arah jarum jam
+         horizontalalignment='right')<--penataan menggunakan rata kanan dari posisi tick label
+- ax.set(title='Contoh Plot', <--mengatur properties plotting dengan .set()
+       xlabel='Jumlah', 
+       ylabel='Items')
+- Lifecycle plotting Matplotlib: Penambahan garis (vertical/horizontal line) pada plot: 
+ax.axvline(np.mean(count), <--membentuk garis vertikal pada axes dengan .sxvline(posisi garis pada sumbu x, ls='bentuk garis', color='warna')
+           ls='--', 
+           color='r')
+- fig.canvas.get_supported_filetypes()<--Menampilkan daftar format file yang didukung untuk menyimpan hasil plot ke dalam suatu file
+- fig.savefig('sales.jpg', <--Menyimpan file hasil plotting dengan memanggil .savefig('nama dan format file', transparent=True, dpi=jumlah dot per inch)
+            transparent=True,
+            dpi=80)
